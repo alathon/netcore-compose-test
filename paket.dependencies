@@ -1,0 +1,5 @@
+source https://www.nuget.org/api/v2
+nuget Giraffe
+
+source https://www.myget.org/F/fluffy-team-developer/auth/db96b453-ba26-485b-b758-d2332c746b3e/api/v3/index.json
+nuget Clinics
