@@ -1,32 +1,41 @@
-FROM microsoft/dotnet:2.1-sdk AS build
+FROM makewise/mono AS build
 
-# Install mono
-ENV MONO_VERSION 5.4.1.6
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-
-RUN echo "deb http://download.mono-project.com/repo/debian stretch/snapshots/$MONO_VERSION main" > /etc/apt/sources.list.d/mono-official.list \
-  && apt-get update \
-  && apt-get install -y locales mono-runtime \
-  && rm -rf /var/lib/apt/lists/* /tmp/*
-
-RUN apt-get update \
-  && apt-get install -y binutils curl mono-devel ca-certificates-mono fsharp mono-vbnc nuget referenceassemblies-pcl \
-  && rm -rf /var/lib/apt/lists/* /tmp/*
-
-# Set locale
+# Set mono locale
 RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && /usr/sbin/locale-gen
 
-# Copy project(s) and restore
 WORKDIR /app
+
+# Set up Paket credentials
+ARG PAKET_USERNAME
+ARG PAKET_PASSWORD
 COPY paket.lock paket.dependencies ./
 COPY .paket .paket
+RUN mono .paket/paket.exe config add-credentials \
+  'https://www.myget.org/F/fluffy-team-developer/api/v3/index.json' \
+  --username ${PAKET_USERNAME} --password ${PAKET_PASSWORD}
+
+# Copy project(s) and restore
 COPY src/*.fsproj src/paket.references ./src/
 RUN mono .paket/paket.exe restore
 
-# Copy and publish app
-WORKDIR /app/
+# DEBUG target
+FROM build AS dbg
+ENV DOTNET_USE_POLLING_FILE_WATCHER 1
+COPY --from=build /app /app
+
+# Install VSDBG
+WORKDIR /vsdbg
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        unzip \
+    && rm -rf /var/lib/apt/lists/* \
+    && curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l /vsdbg
+
+# Build
+WORKDIR /app
 COPY src/. ./src/
-RUN dotnet publish src/GiraffeWeb.fsproj -c Release -o out
+RUN dotnet build src/GiraffeWeb.fsproj -c Debug
+RUN dotnet publish src/GiraffeWeb.fsproj -c Debug -o out --no-restore --no-build
 
 # Test app -- TODO
 # FROM build AS testrunner
@@ -37,6 +46,8 @@ RUN dotnet publish src/GiraffeWeb.fsproj -c Release -o out
 # Build runtime
 FROM microsoft/dotnet:2.1-aspnetcore-runtime AS runtime
 WORKDIR /app
-COPY --from=build /app/src/out ./
+COPY --from=dbg /app/src/out ./
+COPY --from=dbg /vsdbg /vsdbg
 EXPOSE 5000
-ENTRYPOINT ["dotnet", "GiraffeWeb.dll"]
+ENTRYPOINT ["tail", "-f", "/dev/null"]
+# ENTRYPOINT ["dotnet", "GiraffeWeb.dll"]

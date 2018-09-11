@@ -2,3 +2,7 @@ out/
 packages
 paket-files
 .paket/paket.targets
+secrets.env
+src/out
+src/bin
+src/obj

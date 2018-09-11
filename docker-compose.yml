@@ -1,13 +1,12 @@
 version: '3'
 services:
   web:
+    container_name: makewise-web
     build: .
     ports:
       - "5000:5000"
     depends_on:
       - db
-    environment:
-      - ASPNETCORE_URLS=http://*:5000
-      - ASPNETCORE_ENVIRONMENT=Development
   db:
     image: "postgres:alpine"
+  

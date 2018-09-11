@@ -1,19 +1,20 @@
 NUGET
-  remote: https://www.myget.org/F/fluffy-team-developer/auth/db96b453-ba26-485b-b758-d2332c746b3e/api/v3/index.json
+  remote: https://www.myget.org/F/fluffy-team-developer/api/v3/index.json
     Clinics (0.1.0)
   remote: https://www.nuget.org/api/v2
-    FSharp.Core (4.5) - restriction: || (>= net461) (>= netstandard2.0)
-    Giraffe (1.1)
-      FSharp.Core (>= 4.2.3) - restriction: || (>= net461) (>= netstandard2.0)
-      Microsoft.AspNetCore.Authentication (>= 2.0.1) - restriction: || (>= net461) (>= netstandard2.0)
-      Microsoft.AspNetCore.Diagnostics (>= 2.0.1) - restriction: || (>= net461) (>= netstandard2.0)
-      Microsoft.AspNetCore.Hosting.Abstractions (>= 2.0.1) - restriction: || (>= net461) (>= netstandard2.0)
-      Newtonsoft.Json (>= 10.0.3) - restriction: || (>= net461) (>= netstandard2.0)
+    FSharp.Core (4.5.2) - restriction: || (>= net461) (>= netstandard2.0)
+    Giraffe (2.0.1)
+      FSharp.Core (>= 4.5.2) - restriction: || (>= net461) (>= netstandard2.0)
+      Microsoft.AspNetCore.Authentication (>= 2.1.1) - restriction: || (>= net461) (>= netstandard2.0)
+      Microsoft.AspNetCore.Authorization (>= 2.1.1) - restriction: || (>= net461) (>= netstandard2.0)
+      Microsoft.AspNetCore.Diagnostics (>= 2.1.1) - restriction: || (>= net461) (>= netstandard2.0)
+      Microsoft.AspNetCore.Hosting.Abstractions (>= 2.1.1) - restriction: || (>= net461) (>= netstandard2.0)
+      Newtonsoft.Json (>= 11.0.2) - restriction: || (>= net461) (>= netstandard2.0)
       System.Text.RegularExpressions (>= 4.3) - restriction: || (>= net461) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net461
       System.Xml.XmlSerializer (>= 4.3) - restriction: || (>= net461) (>= netstandard2.0)
-      TaskBuilder.fs (>= 1.0.1) - restriction: || (>= net461) (>= netstandard2.0)
-    Microsoft.AspNetCore.Authentication (2.1.1) - restriction: || (>= net461) (>= netstandard2.0)
+      TaskBuilder.fs (>= 2.0) - restriction: || (>= net461) (>= netstandard2.0)
+    Microsoft.AspNetCore.Authentication (2.1.2) - restriction: || (>= net461) (>= netstandard2.0)
       Microsoft.AspNetCore.Authentication.Core (>= 2.1.1) - restriction: >= netstandard2.0
       Microsoft.AspNetCore.DataProtection (>= 2.1.1) - restriction: >= netstandard2.0
       Microsoft.AspNetCore.Http (>= 2.1.1) - restriction: >= netstandard2.0
@@ -29,6 +30,9 @@ NUGET
       Microsoft.AspNetCore.Authentication.Abstractions (>= 2.1.1) - restriction: >= netstandard2.0
       Microsoft.AspNetCore.Http (>= 2.1.1) - restriction: >= netstandard2.0
       Microsoft.AspNetCore.Http.Extensions (>= 2.1.1) - restriction: >= netstandard2.0
+    Microsoft.AspNetCore.Authorization (2.1.2) - restriction: || (>= net461) (>= netstandard2.0)
+      Microsoft.Extensions.Logging.Abstractions (>= 2.1.1) - restriction: >= netstandard2.0
+      Microsoft.Extensions.Options (>= 2.1.1) - restriction: >= netstandard2.0
     Microsoft.AspNetCore.Cryptography.Internal (2.1.1) - restriction: >= netstandard2.0
     Microsoft.AspNetCore.DataProtection (2.1.1) - restriction: >= netstandard2.0
       Microsoft.AspNetCore.Cryptography.Internal (>= 2.1.1) - restriction: >= netstandard2.0
@@ -107,7 +111,7 @@ NUGET
     Microsoft.Net.Http.Headers (2.1.1) - restriction: >= netstandard2.0
       Microsoft.Extensions.Primitives (>= 2.1.1) - restriction: >= netstandard2.0
       System.Buffers (>= 4.5) - restriction: >= netstandard2.0
-    Microsoft.NETCore.Platforms (2.1) - restriction: || (&& (< net45) (>= net461) (< netstandard1.2)) (&& (< net45) (>= net461) (< netstandard1.3)) (&& (< net45) (>= net461) (>= netstandard1.5) (< netstandard1.6)) (&& (< net45) (>= net461) (< netstandard1.5)) (&& (< net45) (>= net461) (>= netstandard1.6)) (&& (< net45) (>= netstandard2.0)) (&& (>= net461) (>= netcoreapp1.1)) (&& (>= net461) (< netstandard1.0) (>= netstandard1.6)) (&& (>= net461) (< netstandard1.3) (>= netstandard1.6) (>= wpa81)) (&& (>= net461) (< netstandard1.5) (>= netstandard1.6) (>= uap10.0)) (&& (>= net461) (>= netstandard1.6) (< portable-net45+win8+wpa81)) (&& (>= net461) (>= netstandard1.6) (>= uap10.1)) (&& (>= net461) (>= netstandard1.6) (>= wp8)) (&& (>= net461) (< portable-net45+win8+wp8+wpa81)) (&& (>= netcoreapp1.1) (>= netstandard2.0)) (>= netcoreapp2.0) (&& (< netstandard1.0) (>= netstandard2.0) (< portable-net45+win8)) (&& (< netstandard1.0) (>= netstandard2.0) (>= win8)) (&& (< netstandard1.0) (>= netstandard2.0) (< win8)) (&& (< netstandard1.3) (>= netstandard2.0) (< win8) (>= wpa81)) (&& (< netstandard1.5) (>= netstandard2.0) (>= uap10.0)) (&& (>= netstandard2.0) (< portable-net45+win8+wp8+wpa81)) (&& (>= netstandard2.0) (< portable-net45+win8+wpa81)) (&& (>= netstandard2.0) (>= uap10.1)) (&& (>= netstandard2.0) (>= wp8))
+    Microsoft.NETCore.Platforms (2.1.1) - restriction: || (&& (< net45) (>= net461) (< netstandard1.2)) (&& (< net45) (>= net461) (< netstandard1.3)) (&& (< net45) (>= net461) (>= netstandard1.5) (< netstandard1.6)) (&& (< net45) (>= net461) (< netstandard1.5)) (&& (< net45) (>= net461) (>= netstandard1.6)) (&& (< net45) (>= netstandard2.0)) (&& (>= net461) (>= netcoreapp1.1)) (&& (>= net461) (< netstandard1.0) (>= netstandard1.6)) (&& (>= net461) (< netstandard1.3) (>= netstandard1.6) (>= wpa81)) (&& (>= net461) (< netstandard1.5) (>= netstandard1.6) (>= uap10.0)) (&& (>= net461) (>= netstandard1.6) (< portable-net45+win8+wpa81)) (&& (>= net461) (>= netstandard1.6) (>= uap10.1)) (&& (>= net461) (>= netstandard1.6) (>= wp8)) (&& (>= net461) (< portable-net45+win8+wp8+wpa81)) (&& (>= netcoreapp1.1) (>= netstandard2.0)) (>= netcoreapp2.0) (&& (< netstandard1.0) (>= netstandard2.0) (< portable-net45+win8)) (&& (< netstandard1.0) (>= netstandard2.0) (>= win8)) (&& (< netstandard1.0) (>= netstandard2.0) (< win8)) (&& (< netstandard1.3) (>= netstandard2.0) (< win8) (>= wpa81)) (&& (< netstandard1.5) (>= netstandard2.0) (>= uap10.0)) (&& (>= netstandard2.0) (< portable-net45+win8+wp8+wpa81)) (&& (>= netstandard2.0) (< portable-net45+win8+wpa81)) (&& (>= netstandard2.0) (>= uap10.1)) (&& (>= netstandard2.0) (>= wp8))
     Microsoft.NETCore.Targets (2.1) - restriction: || (&& (< net45) (>= net461) (< netstandard1.2)) (&& (< net45) (>= net461) (< netstandard1.3)) (&& (< net45) (>= net461) (>= netstandard1.5) (< netstandard1.6)) (&& (< net45) (>= net461) (< netstandard1.5)) (&& (< net45) (>= net461) (>= netstandard1.6)) (&& (< net45) (< netstandard1.2) (>= netstandard2.0) (< win8)) (&& (< net45) (>= netstandard2.0) (< win8) (< wpa81)) (&& (>= net461) (>= netcoreapp1.1)) (&& (>= net461) (< portable-net45+win8+wp8+wpa81)) (&& (>= netcoreapp1.1) (>= netstandard2.0)) (&& (>= netstandard2.0) (< portable-net45+win8+wp8+wpa81))
     Microsoft.Win32.Registry (4.5) - restriction: >= netstandard2.0
       System.Buffers (>= 4.4) - restriction: || (>= monoandroid) (>= monotouch) (&& (< net46) (< netcoreapp2.0) (>= netstandard2.0)) (>= xamarinios) (>= xamarinmac) (>= xamarintvos) (>= xamarinwatchos)
@@ -187,7 +191,7 @@ NUGET
       Microsoft.NETCore.Platforms (>= 1.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.0) (< win8) (< wp8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (< portable-net45+win8+wp8+wpa81)
       Microsoft.NETCore.Targets (>= 1.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.0) (< win8) (< wp8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (< portable-net45+win8+wp8+wpa81)
       System.Runtime (>= 4.3) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.0) (< win8) (< wp8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (< portable-net45+win8+wp8+wpa81)
-    System.Reflection.TypeExtensions (4.5) - restriction: || (&& (< net45) (>= net461)) (&& (< net45) (>= netstandard2.0) (< win8) (< wpa81)) (&& (>= net461) (< portable-net45+win8+wp8+wpa81)) (&& (>= netstandard2.0) (< portable-net45+win8+wp8+wpa81))
+    System.Reflection.TypeExtensions (4.5.1) - restriction: || (&& (< net45) (>= net461)) (&& (< net45) (>= netstandard2.0) (< win8) (< wpa81)) (&& (>= net461) (< portable-net45+win8+wp8+wpa81)) (&& (>= netstandard2.0) (< portable-net45+win8+wp8+wpa81))
     System.Resources.ResourceManager (4.3) - restriction: || (&& (< net45) (>= net461)) (&& (< net45) (< netcoreapp1.1) (>= netstandard2.0)) (&& (< net45) (>= netstandard2.0) (< win8) (< wpa81)) (&& (>= net461) (< portable-net45+win8+wp8+wpa81)) (&& (>= netstandard2.0) (< portable-net45+win8+wp8+wpa81))
       Microsoft.NETCore.Platforms (>= 1.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.0) (< win8) (< wp8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (< portable-net45+win8+wp8+wpa81)
       Microsoft.NETCore.Targets (>= 1.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.0) (< win8) (< wp8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (< portable-net45+win8+wp8+wpa81)

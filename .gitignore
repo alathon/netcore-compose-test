@@ -456,3 +456,6 @@ Scripts/
 
 ## Dotnet
 out/
+
+# Paket secrets
+secrets.env
