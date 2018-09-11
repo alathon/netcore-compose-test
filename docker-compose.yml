@@ -7,6 +7,12 @@ services:
       - "5000:5000"
     depends_on:
       - db
+    volumes:
+      - ./src:/app/src
+      - ./.paket:/app/.paket
+    environment:
+      - ASPNETCORE_URLS=http://*:5000
+      - ASPNETCORE_ENVIRONMENT=Development
   db:
     image: "postgres:alpine"
   
