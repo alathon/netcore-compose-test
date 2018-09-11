@@ -8,11 +8,13 @@ WORKDIR /app
 # Set up Paket credentials
 ARG PAKET_USERNAME
 ARG PAKET_PASSWORD
+ARG PAKET_URL
 COPY paket.lock paket.dependencies ./
 COPY .paket .paket
 RUN mono .paket/paket.exe config add-credentials \
-  'https://www.myget.org/F/fluffy-team-developer/api/v3/index.json' \
-  --username ${PAKET_USERNAME} --password ${PAKET_PASSWORD}
+  ${PAKET_URL} \
+  --username ${PAKET_USERNAME} \
+  --password ${PAKET_PASSWORD}
 
 # Copy project(s) and restore
 COPY src/*.fsproj src/paket.references ./src/
@@ -20,7 +22,6 @@ RUN mono .paket/paket.exe restore
 
 # DEBUG target
 FROM build AS dbg
-ENV DOTNET_USE_POLLING_FILE_WATCHER 1
 COPY --from=build /app /app
 
 # Install VSDBG
@@ -49,5 +50,6 @@ WORKDIR /app
 COPY --from=dbg /app/src/out ./
 COPY --from=dbg /vsdbg /vsdbg
 EXPOSE 5000
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+# Tail entrypoint basically just keeps container alive doing nothing.
+ENTRYPOINT ["tail", "-f", "/dev/null"] 
 # ENTRYPOINT ["dotnet", "GiraffeWeb.dll"]
