@@ -289,12 +289,6 @@ packages/
 *.sln.iml
 
 
-### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-
-
-
 ### OSX ###
 .DS_Store
 .AppleDouble
