@@ -1,0 +1,38 @@
+FROM makewise/mono AS build
+
+WORKDIR /app
+
+# Set up Paket credentials
+ARG PAKET_USERNAME
+ARG PAKET_PASSWORD
+ARG PAKET_URL
+COPY paket.lock paket.dependencies ./
+COPY .paket/ .paket/
+RUN mono .paket/paket.exe config add-credentials \
+  ${PAKET_URL} \
+  --username ${PAKET_USERNAME} \
+  --password ${PAKET_PASSWORD}
+
+# Copy project(s) and restore
+COPY src/*.fsproj src/paket.references ./src/
+RUN mono .paket/paket.exe restore
+
+# Build
+FROM build AS release
+WORKDIR /app
+COPY src/. ./src/
+RUN dotnet build src/GiraffeWeb.fsproj -c Release -o out
+RUN dotnet publish src/GiraffeWeb.fsproj -c Release -o out --no-restore --no-build
+
+# Test app -- TODO
+# FROM build AS testrunner
+# WORKDIR /app/src/Clinics/tests
+# COPY src/Clinics/tests/. .
+# ENTRYPOINT ["dotnet", "test", "--logger:trx"]
+
+# Runtime
+FROM microsoft/dotnet:2.1-aspnetcore-runtime AS runtime
+WORKDIR /app
+COPY --from=release /app/src/out ./
+EXPOSE 5000
+ENTRYPOINT ["dotnet", "GiraffeWeb.dll"]

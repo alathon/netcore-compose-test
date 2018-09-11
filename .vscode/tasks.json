@@ -3,7 +3,7 @@
     "tasks": [
         {
             "label": "watch",
-            "command": "sh ./build.sh && docker-compose up -d && sh ./watch.sh",
+            "command": "docker-compose stop && sh ./build-debug.sh && docker-compose up -d && sh ./watch.sh",
             "type": "shell",
             "group": "build",
             "presentation": {
@@ -14,7 +14,7 @@
         },
         {
             "label": "build",
-            "command": "sh ./build.sh && docker-compose up -d",
+            "command": "docker-compose stop && sh ./build-debug.sh && docker-compose up -d",
             "type": "shell",
             "group": {
                 "kind": "build",
@@ -27,7 +27,7 @@
         },
         {
             "label": "publish",
-            "command": "sh ./build.sh && docker-compose up -d && sh ./publish-debug.sh",
+            "command": "sh ./publish-debug.sh",
             "type": "shell",
             "group": "build",
             "presentation": {
