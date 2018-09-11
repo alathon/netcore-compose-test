@@ -15,5 +15,7 @@ RUN mono .paket/paket.exe config add-credentials \
 
 # Copy over sources
 COPY src src/
+# Cold-start dotnet
+RUN dotnet help
 EXPOSE 5000
 ENTRYPOINT ["tail", "-f", "/dev/null"] 

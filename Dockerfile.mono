@@ -10,6 +10,9 @@ RUN echo "deb http://download.mono-project.com/repo/debian stretch/snapshots/$MO
   && apt-get install -y locales mono-runtime \
   && rm -rf /var/lib/apt/lists/* /tmp/*
 
+# Set mono locale
+RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && /usr/sbin/locale-gen
+
 # Install ASP.NET Core
 ENV ASPNETCORE_VERSION 2.1.4
 RUN apt-get update \

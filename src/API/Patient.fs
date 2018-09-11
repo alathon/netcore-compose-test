@@ -35,5 +35,5 @@ module Patient =
         choose [
             GET >=> routef "/get/%i" Impl.getById
             POST >=> routef "/set/%i" Impl.setById
-            GET >=> text "Hello world!"
+            GET >=> text "Hello world! 5"
         ]
