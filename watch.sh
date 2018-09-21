@@ -1,1 +1,1 @@
-docker exec -i makewise-web dotnet watch --project src/GiraffeWeb.fsproj run
+docker exec -i web-dbg dotnet watch --project src/GiraffeWeb/GiraffeWeb.fsproj run

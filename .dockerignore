@@ -6,3 +6,11 @@ secrets.env
 src/out
 src/bin
 src/obj
+Dockerfile*
+docker-compose*
+.dockerignore
+.git
+.gitignore
+README.md
+LICENSE
+.vscode

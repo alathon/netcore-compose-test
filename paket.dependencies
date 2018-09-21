@@ -1,5 +1,6 @@
 source https://www.nuget.org/api/v2
 nuget Giraffe
+nuget IdentityServer4
 
 source https://www.myget.org/F/fluffy-team-developer/api/v3/index.json
 nuget Clinics

@@ -1,0 +1,37 @@
+FROM makewise/mono AS base
+WORKDIR /app
+EXPOSE 5000
+
+FROM makewise/mono AS build
+WORKDIR /build
+
+# Set up Paket credentials
+COPY paket.lock paket.dependencies ./
+COPY .paket/ .paket/
+#RUN mono .paket/paket.exe config add-credentials \
+#  ${PAKET_URL} \
+#  --username ${PAKET_USERNAME} \
+#  --password ${PAKET_PASSWORD}
+
+# Restore dependencies
+COPY src/GiraffeWeb/GiraffeWeb.fsproj src/GiraffeWeb/GiraffeWeb.fsproj
+RUN mono .paket/paket.exe install
+RUN dotnet restore src/GiraffeWeb/GiraffeWeb.fsproj
+
+# Build
+ARG BUILD_ENV
+COPY src/GiraffeWeb src/GiraffeWeb
+RUN dotnet build src/GiraffeWeb/GiraffeWeb.fsproj -c ${BUILD_ENV} -o /app
+
+# Publish
+FROM build AS publish
+ARG BUILD_ENV
+RUN dotnet publish src/GiraffeWeb/GiraffeWeb.fsproj -c ${BUILD_ENV} -o /app
+
+# Minimal final build
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+# Cold-start dotnet
+RUN dotnet help &>/dev/null 
+ENTRYPOINT ["dotnet", "GiraffeWeb.dll"]

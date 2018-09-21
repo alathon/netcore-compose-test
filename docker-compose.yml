@@ -1,18 +1,36 @@
 version: '3'
 services:
+  iam:
+    container_name: iam
+    build:
+      args:
+        - BUILD_ENV=Debug
+      context: .
+      dockerfile: src/IAM/Dockerfile.run
+    ports:
+      - "5050:5050"
   web:
-    container_name: makewise-web
-    build: .
+    container_name: web
+    build:
+      args:
+        - BUILD_ENV=Debug
+      context: .
+      dockerfile: src/GiraffeWeb/Dockerfile.run
     ports:
       - "5000:5000"
     depends_on:
       - db
-    volumes:
-      - ./src:/app/src
-      - ./.paket:/app/.paket
     environment:
       - ASPNETCORE_URLS=http://*:5000
       - ASPNETCORE_ENVIRONMENT=Development
   db:
     image: "postgres:alpine"
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
   
+volumes:
+  pgdata:

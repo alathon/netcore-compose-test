@@ -1,0 +1,21 @@
+version: '3'
+services:
+  iam:
+    container_name: iam-dbg
+    build:
+      context: .
+      dockerfile: src/IAM/Dockerfile
+    volumes:
+      - ./src/IAM:/build/src/IAM
+      - ./.paket:/build/.paket
+  web:
+    container_name: web-dbg
+    build:
+      context: .
+      dockerfile: src/GiraffeWeb/Dockerfile
+    volumes:
+      - ./src/GiraffeWeb:/build/src/GiraffeWeb
+      - ./.paket:/build/.paket
+    environment:
+      - ASPNETCORE_URLS=http://*:5000
+      - ASPNETCORE_ENVIRONMENT=Development

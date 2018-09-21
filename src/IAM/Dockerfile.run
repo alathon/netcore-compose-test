@@ -1,0 +1,22 @@
+FROM microsoft/dotnet:2.1-sdk AS base
+WORKDIR /app
+EXPOSE 5050
+
+FROM makewise/mono AS build
+ARG BUILD_ENV
+WORKDIR /build
+COPY paket.lock paket.dependencies ./
+COPY .paket/ .paket/
+COPY src/IAM/IAM.csproj src/IAM/IAM.csproj
+RUN dotnet restore src/IAM/IAM.csproj
+COPY src/IAM src/IAM
+RUN dotnet build src/IAM/IAM.csproj -c ${BUILD_ENV} -o /app
+
+FROM build AS publish
+ARG BUILD_ENV
+RUN dotnet publish src/IAM/IAM.csproj -c ${BUILD_ENV} -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "IAM.dll"]
