@@ -1,7 +1,6 @@
 version: '3.4'
 services:
   iam:
-    container_name: iam-dbg
     build:
       context: .
       dockerfile: src/IAM/Dockerfile
@@ -13,7 +12,6 @@ services:
       - ./.paket:/build/.paket
 
   web:
-    container_name: web-dbg
     build:
       context: .
       dockerfile: src/GiraffeWeb/Dockerfile
@@ -27,6 +25,5 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
 
   db:
-    container_name: db-dbg
     ports:
       - 5432:5432
