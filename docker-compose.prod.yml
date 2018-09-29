@@ -1,0 +1,19 @@
+version: '3'
+services:
+  iam:
+    build:
+      context: .
+      dockerfile: src/IAM/Dockerfile
+      target: final
+      args:
+        - BUILD_ENV=Production
+
+  web:
+    build:
+      context: .
+      dockerfile: src/GiraffeWeb/Dockerfile
+      target: final
+      args:
+        - BUILD_ENV=Production
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
