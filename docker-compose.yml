@@ -1,0 +1,17 @@
+version: '3.4'
+services:
+  iam:
+    image: makewise/iam:latest
+    ports:
+      - 5050:5050
+  web:
+    image: makewise/web:latest
+    ports:
+      - 5000:80
+    depends_on:
+      - db
+
+  db:
+    image: postgres:alpine
+    volumes:
+      - /var/lib/postgresql/data
