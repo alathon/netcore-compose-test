@@ -9,7 +9,7 @@ RUN dotnet restore src/IAM/IAM.csproj
 COPY src/IAM src/IAM
 
 FROM build AS dev
-EXPOSE 80
+EXPOSE 5050
 RUN dotnet help &>/dev/null
 ENTRYPOINT ["tail", "-f", "/dev/null"]
 
@@ -20,7 +20,7 @@ RUN dotnet publish src/IAM/IAM.csproj -c ${BUILD_ENV} -o /app
 
 FROM base AS final
 WORKDIR /app
-EXPOSE 80
+EXPOSE 5050
 COPY --from=publish /app .
 RUN dotnet help &>/dev/null
 ENTRYPOINT ["dotnet", "IAM.dll"]
