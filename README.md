@@ -1,7 +1,11 @@
 # netcore-compose-test
 A .NET Core Docker+Docker-compose test
 
-### Running the projects
+### Setup
+
+Build the `Dockerfile.mono` file by issuing the following command: `docker build -t makewise/mono -f Dockerfile.mono .` from the root directory of this repository.
+
+### Building & running the projects
 
 To boot up containers meant for local development and debugging, run `./compose.sh dev up -d`. This will start up
 a PostgreSQL database, the IAM container and the GiraffeWeb container. From there, you can issue commands to the
