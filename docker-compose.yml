@@ -13,6 +13,5 @@ services:
 
   db:
     image: postgres:alpine
-    restart: always
     volumes:
       - /var/lib/postgresql/data

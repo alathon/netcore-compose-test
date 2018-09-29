@@ -1,6 +1,7 @@
 version: '3.4'
 services:
   iam:
+    restart: always
     build:
       context: .
       dockerfile: src/IAM/Dockerfile
@@ -9,6 +10,7 @@ services:
         - BUILD_ENV=Production
 
   web:
+    restart: always
     build:
       context: .
       dockerfile: src/GiraffeWeb/Dockerfile
