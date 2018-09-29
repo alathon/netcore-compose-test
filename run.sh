@@ -1,1 +1,1 @@
-docker exec -i makewise-web dotnet --project src/GiraffeWeb.fsproj run
+docker exec -i web dotnet --project src/GiraffeWeb.fsproj run
