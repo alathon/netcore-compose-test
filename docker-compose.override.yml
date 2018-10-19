@@ -7,6 +7,7 @@ services:
       target: dev
       args:
         - BUILD_ENV=Debug
+    image: makewise/iam:debug
     volumes:
       - ./src/IAM:/build/src/IAM
       - ./.paket:/build/.paket
@@ -18,6 +19,7 @@ services:
       target: dev
       args:
         - BUILD_ENV=Debug
+    image: makewise/web:debug
     volumes:
       - ./src/GiraffeWeb:/build/src/GiraffeWeb
       - ./.paket:/build/.paket

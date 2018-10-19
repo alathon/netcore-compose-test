@@ -8,6 +8,7 @@ services:
       target: final
       args:
         - BUILD_ENV=Production
+    image: makewise/iam:latest
 
   web:
     restart: always
@@ -17,5 +18,6 @@ services:
       target: final
       args:
         - BUILD_ENV=Production
+    image: makewise/web:latest
     environment:
       - ASPNETCORE_ENVIRONMENT=Production

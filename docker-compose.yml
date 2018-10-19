@@ -1,13 +1,11 @@
 version: '3.4'
 services:
   iam:
-    image: makewise/iam:latest
     ports:
       - 5050:5050
     tty: true
     stdin_open: true
   web:
-    image: makewise/web:latest
     ports:
       - 5000:80
     depends_on:
