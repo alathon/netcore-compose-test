@@ -1,0 +1,31 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: build-pod
+spec:
+  serviceAccount: jenkins
+  containers:
+    - name: docker
+      image: docker:latest
+      tty: true
+      command:
+        - cat
+      securityContext:
+        privileged: true
+      volumeMounts:
+        - name: dockersocket
+          mountPath: /var/run/docker.sock
+        - name: nexuslogin
+          mountPath: /root/.docker
+    - name: openshift
+      image: stephen001/oc:latest
+      tty: true
+      command:
+        - cat
+  volumes:
+    - name: dockersocket
+      hostPath:
+        path: /var/run/docker.sock
+    - name: nexuslogin
+      configMap:
+        name: nexus-login
