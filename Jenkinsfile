@@ -17,7 +17,7 @@ pipeline {
         container('docker') {
           script {
             docker.build('makewise/mono:latest', '-f ./Dockerfile.mono .')
-            docker.build('netcore-iam:latest', './src/IAM')
+            docker.build('netcore-iam:latest', '-f ./src/IAM/Dockerfile .')
           }
         }
       }

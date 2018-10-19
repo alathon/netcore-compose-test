@@ -7,7 +7,7 @@ services:
       target: dev
       args:
         - BUILD_ENV=Debug
-    image: makewise/iam:debug
+    image: netcore-iam:debug
     volumes:
       - ./src/IAM:/build/src/IAM
       - ./.paket:/build/.paket
@@ -19,7 +19,7 @@ services:
       target: dev
       args:
         - BUILD_ENV=Debug
-    image: makewise/web:debug
+    image: netcore-web:debug
     volumes:
       - ./src/GiraffeWeb:/build/src/GiraffeWeb
       - ./.paket:/build/.paket
